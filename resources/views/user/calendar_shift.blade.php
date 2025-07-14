@@ -36,7 +36,7 @@
                         $date = sprintf('%04d-%02d-%02d', $year, $month, $day);
                     @endphp
                     <tr>
-                        <td>{{ $date }}</td>
+                        <td>{{ $day }}日</td>
                         <td><input type="time" name="shifts[{{ $date }}][start_time]"></td>
                         <td><input type="time" name="shifts[{{ $date }}][end_time]"></td>
                     </tr>

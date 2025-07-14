@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use Illuminate\Support\Str;
 
 class RegisteredUserController extends Controller
 {
@@ -36,11 +37,17 @@ class RegisteredUserController extends Controller
         'role' => ['required', 'in:user,admin'],
     ]);
 
+    $companyId = null;
+    if ($request->role === 'admin') {
+        $companyId = User::generateUniqueCompanyId();
+    }
+
     $user = User::create([
         'name' => $request->name,
         'email' => $request->email,
         'password' => Hash::make($request->password),
         'role' => $request->role,
+        'company_id' => $companyId,
     ]);
 
     Auth::login($user);

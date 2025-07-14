@@ -92,5 +92,7 @@ class FixedShiftController extends Controller
         return redirect()->route('admin.fixed.index')->with('message', '確定シフトを削除しました');
     }
 
+
+    
     
 }

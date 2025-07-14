@@ -51,6 +51,6 @@ class UserController extends Controller
 
         return view('user.edit_shifts', compact('shifts', 'date'));
     }
-
+    
     
 }

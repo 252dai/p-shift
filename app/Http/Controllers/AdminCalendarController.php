@@ -56,6 +56,8 @@ class AdminCalendarController extends Controller
             'end_time' => $request->end_time,
         ]);
 
+        
+
         return redirect()->route('admin.calendar.shift')->with('message', '確定シフトを登録しました');
     }
 }
