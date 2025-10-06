@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>確定シフト</title>
+    <link rel="stylesheet" href="{{ asset('css/user_fixed_shift.css') }}">
 </head>
 <body>
     <h1>あなたの確定シフト</h1>

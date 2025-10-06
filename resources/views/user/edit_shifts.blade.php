@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>シフト編集・削除</title>
+    <link rel="stylesheet" href="{{ asset('css/user_edit_shift.css') }}">
 </head>
 <body>
 

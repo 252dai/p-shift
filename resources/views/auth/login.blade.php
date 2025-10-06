@@ -2,8 +2,9 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    
     <title>ログイン</title>
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
+
 </head>
 <body>
     <div id="bg-wrapper">

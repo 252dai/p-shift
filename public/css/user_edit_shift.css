@@ -1,0 +1,120 @@
+body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background: linear-gradient(to right, #f0f4f8, #d9e2ec);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 24px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            font-size: 14px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            background-color: #2b6cb0;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+
+        .nav-links a:hover {
+            background-color: #2c5282;
+        }
+
+        .scroll-table {
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 6px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #edf2f7;
+            font-size: 13px;
+        }
+
+        td input[type="time"] {
+            width: 90%;
+            font-size: 13px;
+            padding: 2px;
+        }
+
+        .btn-update {
+            background-color: #38a169;
+            color: white;
+            border: none;
+            padding: 4px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .btn-update:hover {
+            background-color: #2f855a;
+        }
+
+        .btn-delete {
+            background-color: #e53e3e;
+            color: white;
+            border: none;
+            padding: 4px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            margin-left: 4px;
+        }
+
+        .btn-delete:hover {
+            background-color: #c53030;
+        }
+
+        .message {
+            color: green;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 16px;
+            text-decoration: none;
+            background-color: #718096;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+
+        .back-link:hover {
+            background-color: #4a5568;
+        }

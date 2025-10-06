@@ -1,0 +1,96 @@
+/* public/css/register.css */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
+
+body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background: linear-gradient(to right, #f0f4f8, #d9e2ec);
+    color: #333;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+h1 {
+    margin: 2rem 0 1rem;
+    font-size: 1.8rem;
+    color: #2c3e50;
+}
+
+/* フォーム全体を中央寄せ */
+form {
+    background-color: #fff;
+    padding: 2rem;
+    width: 90%;
+    max-width: 420px;
+    margin: 0 auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    text-align: left;
+}
+
+.form-group {
+    margin-bottom: 1.2rem;
+}
+
+label {
+    font-weight: 600;
+    display: block;
+    margin-bottom: 0.4rem;
+    font-size: 0.95rem;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select {
+    width: 100%;
+    padding: 0.55rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    box-sizing: border-box;
+}
+
+/* ボタン */
+button {
+    background-color: #3498db;
+    color: #fff;
+    padding: 0.7rem 1.2rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #2c80b4;
+}
+
+/* リンク */
+a {
+    font-size: 0.9rem;
+    color: #3498db;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* エラーメッセージ */
+.error-message {
+    background: #ffe6e6;
+    border: 1px solid #ffb3b3;
+    padding: 0.8rem;
+    width: 90%;
+    max-width: 420px;
+    margin: 1rem auto;
+    border-radius: 8px;
+    color: #c0392b;
+    font-size: 0.9rem;
+}
+
+.error-message ul {
+    margin: 0;
+    padding-left: 1.2rem;
+}

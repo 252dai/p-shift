@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>チャット</title>
+    <link rel="stylesheet" href="{{ asset('css/chat.css') }}">
 </head>
 <body>
     <h1>会社内チャット</h1>

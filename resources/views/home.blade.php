@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <title>p-shift ホーム</title>
+    <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+    <script src="{{ asset('js/script.js') }}"></script>
    
 </head>
 <body>

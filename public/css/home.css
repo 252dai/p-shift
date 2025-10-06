@@ -1,33 +1,52 @@
-/* public/css/home.css */
-
 html, body {
     margin: 0;
     padding: 0;
     height: 100%;
+    font-family: sans-serif;
+    color: #fff;
+    overflow: hidden;
 }
 
 body {
-    background-image: url('/images/luca-bravo-9l_326FISzk-unsplash.jpg'); /* 必要に応じて変更 */
+    position: relative;
+}
+
+/* 背景オーバーレイ（2枚） */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    font-family: sans-serif;
-    color: #fff;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 2.5s ease-in-out;
 }
 
+.overlay1 {
+    opacity: 1; /* 最初に見せる画像 */
+}
+
+/* 前面の内容エリア */
 .container {
+    position: relative;
+    z-index: 1;
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: rgba(0,0,0,0.5);
     text-align: center;
+    background-color: rgba(0, 0, 0, 0.5);
     padding: 20px;
 }
 
 h1 {
     font-size: 48px;
+    font-weight: bold;
     margin-bottom: 20px;
 }
 

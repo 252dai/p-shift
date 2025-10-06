@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>ユーザー検索・招待</title>
+    <link rel="stylesheet" href="{{ asset('css/admin_search.css') }}">
 </head>
 <body>
     <h2>ユーザー検索・招待</h2>

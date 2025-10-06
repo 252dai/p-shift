@@ -20,6 +20,7 @@ Route::get('/', function () {
     return view('home');
 });
 
+
 // 共通のダッシュボードビュー（管理者・ユーザー用が別にあるなら削除OK）
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -114,6 +115,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/fixed-shifts', [FixedShiftController::class, 'index'])->name('admin.fixed.index');
     Route::post('/admin/fixed-shifts/update/{id}', [FixedShiftController::class, 'update'])->name('admin.fixed.update');
     Route::delete('/admin/fixed-shifts/delete/{id}', [FixedShiftController::class, 'destroy'])->name('admin.fixed.delete');
+    Route::get('/fixed-shifts/{id}/edit', [FixedShiftController::class, 'edit'])->name('fixed.edit');
 });
 
 // URLに年・月を指定してカレンダーシフト作成画面を開く（ユーザー）※必要
@@ -133,10 +135,20 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/admin/fixed-shifts/delete/{id}', [FixedShiftController::class, 'destroy'])->name('admin.fixed.delete');
 });
 
+Route::put('admin/fixed-shifts/update/{id}', [FixedShiftController::class, 'update'])->name('admin.fixed.update');
+
+
 // 管理者：給与管理画面 ※未実装なら削除してもOK
 Route::middleware(['auth'])->group(function () {
     Route::get('/admin/salary', [SalaryController::class, 'index'])->name('admin.salary.index');
 });
+
+Route::post('/admin/salary/update-hourly-wage/{user}', [SalaryController::class, 'updateHourlyWage'])->name('admin.salary.updateHourlyWage');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/user/salary', [App\Http\Controllers\SalaryController::class, 'userIndex'])->name('user.salary.index');
+});
+
 
 // ユーザー：会社参加申請（新方式）※承認制にしたいなら必要
 //Route::middleware('auth')->group(function () {
@@ -157,6 +169,9 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/admin/users/search', [AdminUserController::class, 'search'])->name('admin.users.search');
     Route::post('/admin/users/invite/{user}', [AdminUserController::class, 'invite'])->name('admin.users.invite');
 });
+
+
+
 
 
 

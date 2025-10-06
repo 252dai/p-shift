@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-   <!-- <link rel="stylesheet" href="{{ asset('css/admin_users.css') }}"> -->
+   <link rel="stylesheet" href="{{ asset('css/admin_users.css') }}">
     <title>ユーザー一覧</title>
 </head>
 <body>

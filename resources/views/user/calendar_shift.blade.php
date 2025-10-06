@@ -2,51 +2,80 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>カレンダーシフト提出</title>
+    <title>希望シフト提出</title>
+    <link rel="stylesheet" href="{{ asset('css/user_cale_shift.css') }}">
 </head>
 <body>
-    @php
+@php
+    use Carbon\Carbon;
     $prevMonth = $date->copy()->subMonth();
     $nextMonth = $date->copy()->addMonth();
-    $daysInMonth = $date->daysInMonth;
     $year = $date->year;
     $month = $date->month;
-    @endphp
+    $firstDayOfMonth = Carbon::create($year, $month, 1);
+    $startDayOfWeek = $firstDayOfMonth->dayOfWeek; // 0:日曜
+    $daysInMonth = $date->daysInMonth;
+@endphp
 
-    <div>
-        <a href="{{ route(Route::currentRouteName(), ['year' => $prevMonth->year, 'month' => $prevMonth->month]) }}">← 前月</a>
-        <span>{{ $date->year }}年 {{ $date->month }}月</span>
-        <a href="{{ route(Route::currentRouteName(), ['year' => $nextMonth->year, 'month' => $nextMonth->month]) }}">翌月 →</a>
-    </div>
+<div class="calendar-nav">
+    <a href="{{ route(Route::currentRouteName(), ['year' => $prevMonth->year, 'month' => $prevMonth->month]) }}">← 前月</a>
+    <span>{{ $year }}年 {{ $month }}月</span>
+    <a href="{{ route(Route::currentRouteName(), ['year' => $nextMonth->year, 'month' => $nextMonth->month]) }}">翌月 →</a>
+</div>
 
+<h2 style="text-align:center">{{ $year }}年{{ $month }}月 希望シフト入力</h2>
 
-    <form method="POST" action="{{ route('calendar.shift.store') }}">
-        @csrf
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>日付</th>
-                    <th>開始時間</th>
-                    <th>終了時間</th>
-                </tr>
-            </thead>
-            <tbody>
-                @for ($day = 1; $day <= $daysInMonth; $day++)
-                    @php
-                        $date = sprintf('%04d-%02d-%02d', $year, $month, $day);
-                    @endphp
-                    <tr>
-                        <td>{{ $day }}日</td>
-                        <td><input type="time" name="shifts[{{ $date }}][start_time]"></td>
-                        <td><input type="time" name="shifts[{{ $date }}][end_time]"></td>
-                    </tr>
+<form method="POST" action="{{ route('calendar.shift.store') }}">
+    @csrf
+    <table>
+        <thead>
+        <tr>
+            <th>日</th>
+            <th>月</th>
+            <th>火</th>
+            <th>水</th>
+            <th>木</th>
+            <th>金</th>
+            <th>土</th>
+        </tr>
+        </thead>
+        <tbody>
+        @php
+            $day = 1;
+            $weeks = ceil(($daysInMonth + $startDayOfWeek) / 7);
+        @endphp
+
+        @for ($week = 0; $week < $weeks; $week++)
+            <tr>
+                @for ($i = 0; $i < 7; $i++)
+                    <td>
+                        @if (($week === 0 && $i < $startDayOfWeek) || $day > $daysInMonth)
+                            {{-- 空白 --}}
+                        @else
+                            @php
+                                $ymd = sprintf('%04d-%02d-%02d', $year, $month, $day);
+                            @endphp
+                            <div class="date">{{ $day }}</div>
+                            <div class="shift-inputs">
+                                <label>開始:</label>
+                                <input type="time" name="shifts[{{ $ymd }}][start_time]">
+                                <label>終了:</label>
+                                <input type="time" name="shifts[{{ $ymd }}][end_time]">
+                            </div>
+                            @php $day++; @endphp
+                        @endif
+                    </td>
                 @endfor
-            </tbody>
-        </table>
+            </tr>
+        @endfor
+        </tbody>
+    </table>
 
-        <button type="submit">まとめて提出</button>
-    </form>
+    <div style="text-align:center; margin-top:20px;">
+        <button type="submit" class="submit-button">まとめて提出</button>
+    </div>
+</form>
 
-    <p><a href="{{ route('user.dashboard') }}">← マイページに戻る</a></p>
+<p style="text-align: center;"><a href="{{ route('user.dashboard') }}">← マイページに戻る</a></p>
 </body>
 </html>

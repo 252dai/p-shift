@@ -1,0 +1,121 @@
+html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* ページ全体をスクロール不可に */
+            font-family: 'Noto Sans JP', sans-serif;
+            background: linear-gradient(to right, #f0f4f8, #d9e2ec);
+        }
+
+        .container {
+            max-width: 850px;
+            height: 100vh; /* 画面の高さいっぱい */
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            padding: 12px;
+            box-sizing: border-box;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .nav a {
+            background: #2b6cb0;
+            color: white;
+            text-decoration: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+
+        .nav a:hover {
+            background: #2c5282;
+        }
+
+        .month-title {
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .calendar-scroll {
+            height: 400px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        .calendar-scroll table {
+            border-collapse: collapse;
+            width: 100%;
+            table-layout: fixed;
+        }
+
+        .calendar-scroll thead th {
+            position: sticky;
+            top: 0;
+            background-color: #edf2f7;
+            z-index: 10; /* ヘッダーが他のセルより前に来るように */
+            border-bottom: 2px solid #ccc;
+            padding: 4px;
+            font-size: 12px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 4px;
+            text-align: center;
+            font-size: 12px;
+            height: 70px;
+        }
+
+        th {
+            background-color: #edf2f7;
+        }
+
+        td input[type="time"] {
+            width: 90%;
+            font-size: 11px;
+            margin-top: 2px;
+        }
+
+        .button-row {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+
+        .submit-button, .back-link {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            font-size: 13px;
+            color: white;
+            cursor: pointer;
+        }
+
+        .submit-button {
+            background-color: #38a169;
+        }
+
+        .submit-button:hover {
+            background-color: #2f855a;
+        }
+
+        .back-link {
+            background-color: #718096;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            background-color: #4a5568;
+        }

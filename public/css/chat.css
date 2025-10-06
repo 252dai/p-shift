@@ -1,0 +1,88 @@
+body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background: linear-gradient(to right, #f0f4f8, #d9e2ec);
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 720px;
+    margin: 30px auto;
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+}
+
+h1 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* メッセージ送信フォーム */
+form textarea {
+    width: 100%;
+    font-size: 14px;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    resize: vertical;
+    margin-bottom: 8px;
+}
+
+button {
+    background-color: #3182ce;
+    border: none;
+    color: white;
+    padding: 6px 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #2c5282;
+}
+
+/* チャット履歴 */
+.chat-box {
+    max-height: 400px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 20px;
+}
+
+.chat-message {
+    margin-bottom: 12px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 8px;
+}
+
+.chat-message strong {
+    color: #2b6cb0;
+}
+
+.chat-message p {
+    margin: 4px 0;
+    font-size: 14px;
+}
+
+/* 戻るリンク */
+.back-link {
+    display: inline-block;
+    text-decoration: none;
+    background-color: #718096;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.back-link:hover {
+    background-color: #4a5568;
+}

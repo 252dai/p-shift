@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <!-- <link rel="stylesheet" href="{{ asset('css/admin_dashboard.css') }}"> -->
+    <link rel="stylesheet" href="{{ asset('css/admin_dashboard.css') }}">
     <title>管理者ダッシュボード</title>
 </head>
 <body>

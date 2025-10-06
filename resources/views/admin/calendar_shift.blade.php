@@ -3,64 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>希望シフトカレンダー</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-        .calendar-nav {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .calendar-nav a {
-            margin: 0 15px;
-            text-decoration: none;
-            color: #333;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td {
-            width: 14.2%;
-            height: 140px;
-            vertical-align: top;
-            border: 1px solid #ccc;
-            padding: 5px;
-            font-size: 12px;
-        }
-        th {
-            background-color: #f2f2f2;
-            text-align: center;
-        }
-        .date {
-            font-weight: bold;
-            font-size: 14px;
-            margin-bottom: 5px;
-        }
-        .shift-entry {
-            margin-bottom: 6px;
-            font-size: 11px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-        .shift-time {
-            white-space: nowrap;
-        }
-        .confirm-button {
-            padding: 2px 6px;
-            font-size: 10px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            white-space: nowrap;
-        }
-        .confirm-button:hover {
-            background-color: #45a049;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('css/cale_shift.css') }}">
 </head>
 <body>
     @php
