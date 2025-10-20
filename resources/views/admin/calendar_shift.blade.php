@@ -85,6 +85,6 @@
         </tbody>
     </table>
 
-    <p style="text-align: center;"><a href="{{ route('admin.dashboard') }}">← 管理者マイページに戻る</a></p>
+    <p style="text-align: center;"><a href="{{ route('admin.dashboard') }}">← 戻る</a></p>
 </body>
 </html>

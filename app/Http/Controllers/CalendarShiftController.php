@@ -10,13 +10,20 @@ use Carbon\Carbon;
 
 class CalendarShiftController extends Controller
 {
+    /**
+     * カレンダー表示（ユーザーのみアクセス可能）
+     */
     public function create($year = null, $month = null)
     {
+        // 一般ユーザーチェック
+        if (Auth::user()->role !== 'user') {
+            abort(403, 'このページへはアクセスできません');
+        }
+
         $year = $year ?? Carbon::now()->year;
         $month = $month ?? Carbon::now()->month;
 
         $date = Carbon::createFromDate($year, $month, 1);
-        // 月末日までの日数など取得し、カレンダー表示用に渡す
 
         // その月のシフトを取得
         $shifts = Shift::where('user_id', Auth::id())
@@ -27,8 +34,16 @@ class CalendarShiftController extends Controller
         return view('user.calendar_shift', compact('date', 'shifts'));
     }
 
+    /**
+     * シフト登録（ユーザーのみアクセス可能）
+     */
     public function store(Request $request)
     {
+        // 一般ユーザーチェック
+        if (Auth::user()->role !== 'user') {
+            abort(403, 'アクセス権限がありません');
+        }
+
         $userId = Auth::id();
 
         foreach ($request->input('shifts', []) as $date => $times) {

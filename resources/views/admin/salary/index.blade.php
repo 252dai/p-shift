@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>{{ $year }}年{{ $month }}月 給料一覧</title>
-    <link rel="stylesheet" href="{{ asset('css/salary.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin_salary.css') }}">
 </head>
 <body>
     <h1>{{ $year }}年{{ $month }}月 給料一覧</h1>
@@ -33,6 +33,7 @@
                         <form method="POST" action="{{ route('admin.salary.updateHourlyWage', $data['user']->id) }}">
                             @csrf
                             <input type="number" name="hourly_wage" value="{{ $data['user']->hourly_wage }}" min="0" style="width:80px;">
+                            <p>円</p>
                             <button type="submit">更新</button>
                         </form>
                     </td>
@@ -49,6 +50,6 @@
         </tbody>
     </table>
 
-    <p><a href="{{ route('admin.dashboard') }}">← 管理者マイページに戻る</a></p>
+    <p><a href="{{ route('admin.dashboard') }}">← 戻る</a></p>
 </body>
 </html>

@@ -1,71 +1,90 @@
- body {
-            font-family: 'Noto Sans JP', sans-serif;
-            background: linear-gradient(to right, #f0f4f8, #d9e2ec);
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            max-width: 720px;
-            margin: 30px auto;
-            background: white;
-            border-radius: 12px;
-            padding: 20px 24px;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-        }
-        h1 {
-            font-weight: bold;
-            font-size: 22px;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        .scroll-table {
-            max-height: 440px;
-            overflow-y: auto;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            table-layout: fixed;
-            font-size: 14px;
-        }
-        thead th {
-            position: sticky;
-            top: 0;
-            background: #edf2f7;
-            border-bottom: 2px solid #ccc;
-            padding: 12px 8px;
-            text-align: center;
-            z-index: 5;
-            white-space: nowrap;
-        }
-        tbody td {
-            border: 1px solid #ccc;
-            padding: 10px 8px;
-            text-align: center;
-            vertical-align: middle;
-            word-break: break-word;
-        }
-        tbody tr:last-child td {
-            font-weight: bold;
-            background-color: #f7fafc;
-        }
-        a.back-link {
-            display: block;
-            margin-top: 22px;
-            text-align: center;
-            text-decoration: none;
-            background-color: #718096;
-            color: white;
-            padding: 8px 16px;
-            border-radius: 6px;
-            font-size: 14px;
-            width: max-content;
-            margin-left: auto;
-            margin-right: auto;
-            transition: background-color 0.3s ease;
-        }
-        a.back-link:hover {
-            background-color: #4a5568;
-        }
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
+
+body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background: linear-gradient(to right, #f0f4f8, #d9e2ec);
+    color: #333;
+    margin: 0;
+    padding: 1rem;
+    font-size: 14px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+
+/* ===== 見出し ===== */
+h1 {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #2c3e50;
+    margin: 1rem 0 1rem;
+}
+
+/* ===== テーブル ===== */
+table {
+    width: 95%;
+    max-width: 900px;
+    margin: 0 auto 1rem;
+    border-collapse: collapse;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+th, td {
+    border: 1px solid #e0e6ed;
+    padding: 0.6rem;
+    text-align: center;
+    vertical-align: middle;
+}
+
+th {
+    background-color: #ecf6fc;
+    color: #2c3e50;
+    font-weight: 700;
+}
+
+/* 数値を強調 */
+td {
+    font-weight: 500;
+}
+
+/* ===== 戻るリンク ===== */
+p {
+    text-align: center; /* 常に中央寄せ */
+}
+
+p a {
+    display: inline-block;
+    color: #3498db;
+    text-decoration: none;
+    font-weight: 600;
+    background-color: #fff;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    transition: all 0.2s ease;
+}
+
+p a:hover {
+    background-color: #ecf6fc;
+    transform: translateY(-1px);
+}
+
+/* ===== レスポンシブ ===== */
+@media screen and (max-width: 600px) {
+    th, td {
+        font-size: 0.8rem;
+        padding: 0.4rem;
+    }
+
+    p a {
+        font-size: 0.85rem;
+        padding: 0.35rem 0.7rem;
+        display: inline-block;
+    }
+}

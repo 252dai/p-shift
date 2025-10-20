@@ -1,87 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
+
 body {
-            font-family: 'Noto Sans JP', sans-serif;
-            background: linear-gradient(to right, #f0f4f8, #d9e2ec);
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            max-width: 720px;
-            margin: 30px auto;
-            background: white;
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-        }
-        h1 {
-            font-weight: bold;
-            font-size: 22px;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        .message {
-            color: green;
-            margin-bottom: 15px;
-            font-weight: 600;
-            text-align: center;
-        }
-        .scroll-table {
-            max-height: 420px;
-            overflow-y: auto;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            table-layout: fixed;
-            font-size: 14px;
-        }
-        thead th {
-            position: sticky;
-            top: 0;
-            background: #edf2f7;
-            border-bottom: 2px solid #ccc;
-            padding: 10px 6px;
-            text-align: center;
-            z-index: 5;
-        }
-        tbody td {
-            border: 1px solid #ccc;
-            padding: 10px 6px;
-            word-break: break-word;
-            vertical-align: middle;
-            text-align: center;
-        }
-        form {
-            margin: 0;
-        }
-        button {
-            background-color: #e53e3e;
-            border: none;
-            color: white;
-            padding: 6px 12px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 13px;
-            transition: background-color 0.3s ease;
-        }
-        button:hover {
-            background-color: #9b2c2c;
-        }
-        .back-link {
-            display: block;
-            margin-top: 18px;
-            text-align: center;
-            text-decoration: none;
-            background-color: #718096;
-            color: white;
-            padding: 8px 14px;
-            border-radius: 6px;
-            font-size: 14px;
-            width: max-content;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .back-link:hover {
-            background-color: #4a5568;
-        }
+    font-family: 'Noto Sans JP', sans-serif;
+    background: linear-gradient(to right, #f0f4f8, #d9e2ec);
+    color: #333;
+    margin: 0;
+    padding: 1rem;
+    font-size: 14px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ===== 見出し ===== */
+h1 {
+    text-align: center;
+    margin: 1.5rem 0 1rem;
+    font-size: 1.7rem;
+    color: #2c3e50;
+}
+
+/* ===== メッセージ ===== */
+p[style*="color:green"] {
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+/* ===== テーブル ===== */
+table {
+    width: 95%;
+    max-width: 900px;
+    margin: 0 auto 1.5rem;
+    border-collapse: collapse;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+th, td {
+    padding: 0.8rem 1rem;
+    border: 1px solid #e0e6ed;
+    text-align: left;
+    font-size: 0.9rem;
+}
+
+th {
+    background-color: #ecf6fc;
+    color: #2c3e50;
+    font-weight: 700;
+}
+
+/* ===== 操作ボタン ===== */
+button[type="submit"] {
+    background-color: #e74c3c;
+    color: #fff;
+    font-size: 0.85rem;
+    padding: 0.4rem 0.8rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #c0392b;
+}
+
+/* ===== 戻るリンク ===== */
+p {
+    text-align: center; /* ← 追加：中央揃え */
+}
+
+p a {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-block;
+    background-color: #fff;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    transition: all 0.2s ease;
+}
+
+p a:hover {
+    background-color: #ecf6fc;
+    transform: translateY(-1px);
+}
+
+/* ===== レスポンシブ対応 ===== */
+@media screen and (max-width: 600px) {
+    table, th, td {
+        font-size: 0.8rem;
+    }
+
+    th, td {
+        padding: 0.5rem;
+    }
+
+    button[type="submit"] {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.75rem;
+    }
+
+    p a {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.85rem;
+    }
+}

@@ -1,121 +1,175 @@
-html, body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            overflow: hidden; /* ページ全体をスクロール不可に */
-            font-family: 'Noto Sans JP', sans-serif;
-            background: linear-gradient(to right, #f0f4f8, #d9e2ec);
-        }
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
 
-        .container {
-            max-width: 850px;
-            height: 100vh; /* 画面の高さいっぱい */
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            padding: 12px;
-            box-sizing: border-box;
-        }
+body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background: linear-gradient(to right, #f0f4f8, #d9e2ec);
+    color: #333;
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
 
-        .nav {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 8px;
-        }
+h1, h2 {
+    text-align: center;
+    margin: 1.5rem 0 0.5rem;
+    color: #2c3e50;
+}
 
-        .nav a {
-            background: #2b6cb0;
-            color: white;
-            text-decoration: none;
-            padding: 6px 12px;
-            border-radius: 4px;
-            font-size: 13px;
-        }
+p {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #555;
+}
 
-        .nav a:hover {
-            background: #2c5282;
-        }
+.container {
+    width: 90%;
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
 
-        .month-title {
-            font-weight: bold;
-            font-size: 16px;
-        }
+/* ===== ナビゲーション ===== */
+/* ===== カレンダー上部のナビゲーション ===== */
+.calendar-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.2rem;
+    margin: 1rem 0 0.5rem;
+}
 
-        .calendar-scroll {
-            height: 400px;
-            overflow-y: auto;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-        }
+.calendar-nav a {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    transition: all 0.2s ease;
+}
 
-        .calendar-scroll table {
-            border-collapse: collapse;
-            width: 100%;
-            table-layout: fixed;
-        }
+.calendar-nav a:hover {
+    background-color: #ecf6fc;
+    transform: translateY(-1px);
+}
 
-        .calendar-scroll thead th {
-            position: sticky;
-            top: 0;
-            background-color: #edf2f7;
-            z-index: 10; /* ヘッダーが他のセルより前に来るように */
-            border-bottom: 2px solid #ccc;
-            padding: 4px;
-            font-size: 12px;
-        }
+.calendar-nav span {
+    font-weight: 700;
+    color: #2c3e50;
+}
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            table-layout: fixed;
-        }
+.month-title {
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-align: center;
+    color: #2c3e50;
+}
 
-        th, td {
-            border: 1px solid #ccc;
-            padding: 4px;
-            text-align: center;
-            font-size: 12px;
-            height: 70px;
-        }
+/* ===== カレンダー ===== */
+.calendar-scroll {
+    overflow-x: auto;
+}
 
-        th {
-            background-color: #edf2f7;
-        }
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    border-radius: 8px;
+}
 
-        td input[type="time"] {
-            width: 90%;
-            font-size: 11px;
-            margin-top: 2px;
-        }
+thead th {
+    background-color: #3498db;
+    color: #fff;
+    font-weight: 600;
+    padding: 0.6rem;
+    text-align: center;
+}
 
-        .button-row {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 10px;
-        }
+tbody td {
+    border: 1px solid #ccc;
+    text-align: center;
+    padding: 0.5rem;
+    vertical-align: top;
+}
 
-        .submit-button, .back-link {
-            padding: 6px 12px;
-            border: none;
-            border-radius: 4px;
-            font-size: 13px;
-            color: white;
-            cursor: pointer;
-        }
+tbody td div {
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+}
 
-        .submit-button {
-            background-color: #38a169;
-        }
+/* 時間入力 */
+input[type="time"] {
+    width: 90%;
+    margin: 2px 0;
+    padding: 2px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
 
-        .submit-button:hover {
-            background-color: #2f855a;
-        }
+/* ===== ボタン行 ===== */
+.button-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+}
 
-        .back-link {
-            background-color: #718096;
-            text-decoration: none;
-        }
+.back-link {
+    text-decoration: none;
+    color: #3498db;
+    font-weight: 600;
+}
 
-        .back-link:hover {
-            background-color: #4a5568;
-        }
+.back-link:hover {
+    text-decoration: underline;
+}
+
+.submit-button {
+    background-color: #2ecc71;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 0.6rem 1.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: background-color 0.2s ease;
+}
+
+.submit-button:hover {
+    background-color: #27ae60;
+}
+
+/* ===== レスポンシブ ===== */
+@media screen and (max-width: 600px) {
+    table, tbody td, thead th {
+        font-size: 0.8rem;
+    }
+
+    .nav {
+        flex-direction: column;
+        gap: 0.4rem;
+    }
+
+    .button-row {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: stretch;
+    }
+
+    .submit-button {
+        width: 100%;
+    }
+
+    .back-link {
+        text-align: center;
+    }
+}

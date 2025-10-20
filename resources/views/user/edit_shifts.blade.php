@@ -10,10 +10,17 @@
     @php
     $prevMonth = $date->copy()->subMonth();
     $nextMonth = $date->copy()->addMonth();
+            $year = $date->year;
+        $month = $date->month;
     @endphp
 
-    <a href="{{ route('user.shifts.edit', ['year' => $prevMonth->year, 'month' => $prevMonth->month]) }}">← 前月</a>
-    <a href="{{ route('user.shifts.edit', ['year' => $nextMonth->year, 'month' => $nextMonth->month]) }}">翌月 →</a>
+    <div class="container">
+        <div class="calendar-nav">
+            <a href="{{ route(Route::currentRouteName(), ['year' => $prevMonth->year, 'month' => $prevMonth->month]) }}">← 前月</a>
+            <span class="month-title">{{ $year }}年 {{ $month }}月</span>
+            <a href="{{ route(Route::currentRouteName(), ['year' => $nextMonth->year, 'month' => $nextMonth->month]) }}">次の月 →</a>
+        </div>
+    </div>
     <h1>今月の希望シフト 編集・削除</h1>
 
     @if (session('message'))
@@ -53,6 +60,6 @@
         </tbody>
     </table>
 
-    <p><a href="{{ route('user.dashboard') }}">← マイページに戻る</a></p>
+    <p><a href="{{ route('user.dashboard') }}">← 戻る</a></p>
 </body>
 </html>

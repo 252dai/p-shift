@@ -15,6 +15,11 @@ class SalaryController extends Controller
      */
     public function index()
     {
+        // 管理者チェック
+        if (Auth::user()->role !== 'admin') {
+            abort(403, 'このページへはアクセスできません');
+        }
+
         $companyId = Auth::user()->company_id;
         $year = Carbon::now()->year;
         $month = Carbon::now()->month;
@@ -48,6 +53,11 @@ class SalaryController extends Controller
      */
     public function updateHourlyWage(Request $request, User $user)
     {
+        // 管理者チェック
+        if (Auth::user()->role !== 'admin') {
+            abort(403, 'このページへはアクセスできません');
+        }
+
         $request->validate([
             'hourly_wage' => 'required|numeric|min:0',
         ]);
@@ -59,10 +69,15 @@ class SalaryController extends Controller
     }
 
     /**
-     * ユーザー用：自分の給与確認
+     * 一般ユーザー用：自分の給与確認
      */
     public function userIndex()
     {
+        // 一般ユーザーチェック
+        if (Auth::user()->role !== 'user') {
+            abort(403, 'アクセス権限がありません');
+        }
+
         $user = Auth::user();
         $year = Carbon::now()->year;
         $month = Carbon::now()->month;
@@ -100,8 +115,8 @@ class SalaryController extends Controller
             $diffMinutes = ($end - $start) / 60;
 
             // 基本8時間を超えた分は残業
-            $regularMinutes = min($diffMinutes, 8*60);
-            $overtimeMinutes = max($diffMinutes - 8*60, 0);
+            $regularMinutes = min($diffMinutes, 8 * 60);
+            $overtimeMinutes = max($diffMinutes - 8 * 60, 0);
 
             // 深夜時間（22:00〜翌5:00）を1分単位で計算
             $nightMinutes = 0;
@@ -109,9 +124,9 @@ class SalaryController extends Controller
             while ($current < $end) {
                 $hour = (int)date('H', $current);
                 $minute = (int)date('i', $current);
-                $timeInMinutes = $hour*60 + $minute;
+                $timeInMinutes = $hour * 60 + $minute;
 
-                if ($timeInMinutes >= 22*60 || $timeInMinutes < 5*60) {
+                if ($timeInMinutes >= 22 * 60 || $timeInMinutes < 5 * 60) {
                     $nightMinutes++;
                 }
                 $current += 60; // 1分刻み

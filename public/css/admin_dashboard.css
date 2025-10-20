@@ -34,24 +34,17 @@ main {
     padding: 0.5rem;
 }
 
-.container {
-    width: 90%;
-    max-width: 800px;
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
-}
-
 nav ul {
     list-style: none;
     padding: 0;
-    margin: 0;
-    width: 100%;
+    margin: 0 auto;
+    width: 90%;
+    max-width: 600px;
 }
 
 nav li {
     background-color: #ffffff;
-    border-left: 5px solid #3498db; /* 管理者用：青色 */
+    border-left: 5px solid #3498db;
     border-radius: 8px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
     transition: all 0.2s ease-in-out;
@@ -67,6 +60,7 @@ nav li:hover {
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
+/* 🔹 ここを修正して中央寄せにする */
 nav a {
     display: block;
     padding: 0.9rem 1.2rem;
@@ -75,6 +69,7 @@ nav a {
     text-decoration: none;
     font-size: 0.95rem;
     border-radius: 8px;
+    text-align: center; /* ← 追加！中央寄せ */
 }
 
 nav a:hover {

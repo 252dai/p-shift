@@ -1,108 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
+
 body {
-            font-family: 'Noto Sans JP', sans-serif;
-            background: linear-gradient(to right, #f0f4f8, #d9e2ec);
-            margin: 0;
-            padding: 0;
-        }
+    font-family: 'Noto Sans JP', sans-serif;
+    background: linear-gradient(to right, #f0f4f8, #d9e2ec);
+    color: #333;
+    margin: 0;
+    padding: 1rem;
+    font-size: 14px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
 
-        .container {
-            max-width: 700px;
-            margin: 30px auto;
-            background: white;
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-        }
+/* ===== カレンダー上部のナビゲーション ===== */
+.calendar-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.2rem;
+    margin: 1rem 0 0.5rem;
+}
 
-        .nav {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-            font-size: 14px;
-        }
+.calendar-nav a {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    transition: all 0.2s ease;
+}
 
-        .nav a {
-            text-decoration: none;
-            color: white;
-            background-color: #2b6cb0;
-            padding: 6px 14px;
-            border-radius: 6px;
-        }
+.calendar-nav a:hover {
+    background-color: #ecf6fc;
+    transform: translateY(-1px);
+}
 
-        .nav a:hover {
-            background-color: #2c5282;
-        }
+.calendar-nav span {
+    font-weight: 700;
+    color: #2c3e50;
+}
 
-        h1 {
-            font-weight: bold;
-            font-size: 20px;
-            margin-bottom: 20px;
-            text-align: center;
-        }
+/* ===== 見出し ===== */
+h2 {
+    text-align: center;
+    font-size: 1.4rem;
+    color: #2c3e50;
+    margin: 0.8rem 0 1rem;
+}
 
-        .scroll-table {
-            max-height: 420px;
-            overflow-y: auto;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-        }
+/* ===== カレンダー表 ===== */
+table {
+    border-collapse: collapse;
+    width: 95%;
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            table-layout: fixed;
-            font-size: 14px;
-        }
+th, td {
+    border: 1px solid #e0e6ed;
+    width: 14.28%;
+    vertical-align: top;
+    height: 100px;
+    padding: 4px;
+    text-align: left;
+    position: relative;
+}
 
-        thead th {
-            position: sticky;
-            top: 0;
-            background: #edf2f7;
-            border-bottom: 2px solid #ccc;
-            padding: 10px 6px;
-            text-align: center;
-            z-index: 5;
-        }
+th {
+    background-color: #ecf6fc;
+    color: #2c3e50;
+    text-align: center;
+    padding: 0.6rem;
+    font-weight: 700;
+}
 
-        tbody td {
-            border: 1px solid #ccc;
-            padding: 8px 6px;
-            vertical-align: top;
-            word-break: break-word;
-        }
+/* 日付の数字部分 */
+.date {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: #3498db;
+    margin-bottom: 2px;
+}
 
-        form {
-            display: inline-block;
-            margin-left: 6px;
-            vertical-align: middle;
-        }
+/* シフト内容の枠 */
+.shift-entry {
+    background-color: #f8fbff;
+    border: 1px solid #dbe9f6;
+    border-radius: 6px;
+    padding: 3px 5px;
+    margin: 3px 0;
+    font-size: 0.85rem;
+    color: #333;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+}
 
-        button {
-            background-color: #38a169;
-            border: none;
-            color: white;
-            padding: 4px 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 13px;
-            transition: background-color 0.3s ease;
-        }
+/* 時間表示 */
+.shift-time {
+    color: #2c3e50;
+    font-weight: 600;
+}
 
-        button:hover {
-            background-color: #2f855a;
-        }
+/* 「確定」ボタン */
+.confirm-button {
+    display: inline-block;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 0.25rem 0.6rem;
+    font-size: 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 2px;
+    transition: background-color 0.2s ease;
+}
 
-        .back-link {
-            display: inline-block;
-            margin-top: 18px;
-            text-decoration: none;
-            background-color: #718096;
-            color: white;
-            padding: 8px 14px;
-            border-radius: 6px;
-            font-size: 14px;
-        }
+.confirm-button:hover {
+    background-color: #2980b9;
+}
 
-        .back-link:hover {
-            background-color: #4a5568;
-        }
+/* 「希望なし」表示 */
+td span {
+    display: block;
+    margin-top: 0.3rem;
+    font-size: 0.8rem;
+    color: #999;
+    text-align: center;
+}
+
+/* 戻るリンク */
+p a {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-block;
+    background-color: #fff;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    transition: all 0.2s ease;
+}
+
+p a:hover {
+    background-color: #ecf6fc;
+    transform: translateY(-1px);
+}

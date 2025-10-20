@@ -34,24 +34,28 @@ main {
     padding: 0.5rem;
 }
 
+/* ===== コンテナ中央寄せ ===== */
 .container {
     width: 90%;
     max-width: 800px;
     display: flex;
     flex-direction: column;
     gap: 0.6rem;
+    margin: 0 auto;
 }
 
+/* ===== ナビゲーション ===== */
 nav ul {
     list-style: none;
     padding: 0;
-    margin: 0;
-    width: 100%;
+    margin: 0 auto;
+    width: 90%;
+    max-width: 600px;
 }
 
 nav li {
     background-color: #ffffff;
-    border-left: 5px solid #3498db; /* ユーザー用：緑色 */
+    border-left: 5px solid #3498db;
     border-radius: 8px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
     transition: all 0.2s ease-in-out;
@@ -67,6 +71,7 @@ nav li:hover {
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
+/* 🔹 ここを修正して中央寄せにする */
 nav a {
     display: block;
     padding: 0.9rem 1.2rem;
@@ -75,12 +80,14 @@ nav a {
     text-decoration: none;
     font-size: 0.95rem;
     border-radius: 8px;
+    text-align: center; /* ← 追加！中央寄せ */
 }
 
 nav a:hover {
     background-color: #ecf6fc;
 }
 
+/* ===== ログアウトボタン ===== */
 form {
     text-align: center;
     margin: 1rem 0;
@@ -100,4 +107,17 @@ button[type="submit"] {
 
 button[type="submit"]:hover {
     background-color: #c0392b;
+}
+
+/* ===== レスポンシブ対応 ===== */
+@media screen and (max-width: 600px) {
+    nav a {
+        font-size: 0.85rem;
+        padding: 0.7rem 1rem;
+    }
+
+    button[type="submit"] {
+        font-size: 0.85rem;
+        padding: 0.5rem 1rem;
+    }
 }

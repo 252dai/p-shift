@@ -25,6 +25,6 @@
         </tr>
     </table>
 
-    <p><a href="{{ route('user.dashboard') }}">← マイページに戻る</a></p>
+    <p><a href="{{ route('user.dashboard') }}">← 戻る</a></p>
 </body>
 </html>
