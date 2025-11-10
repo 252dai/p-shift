@@ -56,6 +56,6 @@
     @endif
 
     <br>
-    <a href="{{ route('admin.dashboard') }}">← 管理者ダッシュボードに戻る</a>
+    <a href="{{ route('admin.dashboard') }}">← 戻る</a>
 </body>
 </html>

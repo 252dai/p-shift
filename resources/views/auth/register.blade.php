@@ -49,8 +49,8 @@
         <div class="form-group">
             <label for="role">ユーザー区分</label>
             <select name="role" id="role" required>
-                <option value="user">一般ユーザー</option>
-                <option value="admin">管理者</option>
+                <option value="user">アルバイト</option>
+                <option value="admin">社員</option>
             </select>
         </div>
 

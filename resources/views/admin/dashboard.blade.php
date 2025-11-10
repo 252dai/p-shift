@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="{{ asset('css/admin_dashboard.css') }}">
-    <title>管理者ダッシュボード</title>
+    <title>社員ダッシュボード</title>
 </head>
 <body>
-    <h1>管理者ダッシュボード</h1>
+    <h1>社員ダッシュボード</h1>
     <p>ようこそ、{{ Auth::user()->name }} さん</p>
     <p>会社ID：{{ Auth::user()->company_id ?? '未設定' }}</p>
 

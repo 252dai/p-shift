@@ -4,6 +4,21 @@
     <meta charset="UTF-8">
     <title>確定シフトカレンダー</title>
     <link rel="stylesheet" href="{{ asset('css/admin_fixed_shift.css') }}">
+    <style>
+        /* 初期は非表示 */
+        .shift-container {
+            display: none;
+            margin-top: 5px;
+        }
+        .toggle-btn {
+            margin-top: 3px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        .shift-entry {
+            margin-left: 10px;
+        }
+    </style>
 </head>
 <body>
 @php
@@ -45,23 +60,30 @@
                                 $ymd = sprintf('%04d-%02d-%02d', $year, $month, $day);
                             @endphp
                             <div class="date">{{ $day }}日</div>
+
                             @if (isset($shiftsByDate[$ymd]))
-                                @foreach ($shiftsByDate[$ymd] as $shift)
-                                    <div class="shift-entry">
-                                        ・{{ $shift->user->name }}：{{ \Carbon\Carbon::parse($shift->start_time)->format('H:i') }}〜{{ \Carbon\Carbon::parse($shift->end_time)->format('H:i') }}
-                                        <form method="GET" action="{{ route('admin.fixed.edit', $shift->id) }}">
-                                            <button type="submit" class="edit-button">編集</button>
-                                        </form>
-                                        <form method="POST" action="{{ route('admin.fixed.delete', $shift->id) }}" onsubmit="return confirm('本当に削除しますか？');">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="delete-button">削除</button>
-                                        </form>
-                                    </div>
-                                @endforeach
+                                <button class="toggle-btn" onclick="toggleShift('{{ $ymd }}')">
+                                    シフトを見る ({{ count($shiftsByDate[$ymd]) }}人)
+                                </button>
+                                <div id="shift-{{ $ymd }}" class="shift-container">
+                                    @foreach ($shiftsByDate[$ymd] as $shift)
+                                        <div class="shift-entry">
+                                            ・{{ $shift->user->name }}：{{ \Carbon\Carbon::parse($shift->start_time)->format('H:i') }}〜{{ \Carbon\Carbon::parse($shift->end_time)->format('H:i') }}
+                                            <form method="GET" action="{{ route('admin.fixed.edit', $shift->id) }}">
+                                                <button type="submit" class="edit-button">編集</button>
+                                            </form>
+                                            <form method="POST" action="{{ route('admin.fixed.delete', $shift->id) }}" onsubmit="return confirm('本当に削除しますか？');">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="delete-button">削除</button>
+                                            </form>
+                                        </div>
+                                    @endforeach
+                                </div>
                             @else
                                 <span style="font-size: 11px; color: #999;">なし</span>
                             @endif
+
                             @php $day++; @endphp
                         @endif
                     </td>
@@ -72,5 +94,16 @@
 </table>
 
 <p style="text-align:center;"><a href="{{ route('admin.dashboard') }}">← 戻る</a></p>
+
+<script>
+function toggleShift(id) {
+    const el = document.getElementById('shift-' + id);
+    if (el.style.display === 'block') {
+        el.style.display = 'none';
+    } else {
+        el.style.display = 'block';
+    }
+}
+</script>
 </body>
 </html>
