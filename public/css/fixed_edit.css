@@ -1,0 +1,619 @@
+/* リセット */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: #f5f7fa;
+    color: #2c3e50;
+    display: flex;
+    min-height: 100vh;
+}
+
+.container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ヘッダー */
+.page-header {
+    background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+    padding: 24px 40px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.back-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.back-link:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateX(-4px);
+}
+
+.back-icon {
+    font-size: 18px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-icon {
+    font-size: 28px;
+}
+
+.logo-text {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+/* メインコンテンツ */
+.main-content {
+    flex: 1;
+    padding: 40px;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* メインカード */
+.edit-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+
+.card-header {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    padding: 32px;
+    color: #fff;
+}
+
+.header-icon {
+    font-size: 32px;
+    margin-bottom: 8px;
+}
+
+.card-title {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.card-subtitle {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+/* 従業員情報 */
+.employee-info {
+    padding: 24px 32px;
+    background: #f8fafc;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.info-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: #fff;
+    border: 2px solid #4facfe;
+    border-radius: 20px;
+    box-shadow: 0 2px 4px rgba(79, 172, 254, 0.2);
+}
+
+.badge-icon {
+    font-size: 20px;
+}
+
+.employee-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1a1a2e;
+}
+
+/* フォーム */
+.edit-form {
+    padding: 32px;
+}
+
+.form-section {
+    margin-bottom: 32px;
+}
+
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+}
+
+.section-icon {
+    font-size: 16px;
+}
+
+/* 日付表示 */
+.date-display {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 20px;
+    background: #f8fafc;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+}
+
+.date-value {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1a1a2e;
+}
+
+.day-badge {
+    padding: 4px 12px;
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    color: #fff;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* 時間入力 */
+.time-inputs {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 20px;
+    align-items: start;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.input-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #64748b;
+}
+
+.time-input-wrapper {
+    position: relative;
+}
+
+.time-input {
+    width: 100%;
+    padding: 12px 16px;
+    padding-right: 40px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #1a1a2e;
+    background: #f8fafc;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.time-input:focus {
+    border-color: #4facfe;
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba(79, 172, 254, 0.1);
+}
+
+.input-icon {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: #4facfe;
+}
+
+.time-separator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: 700;
+    color: #64748b;
+    margin-top: 28px;
+}
+
+.error-message {
+    font-size: 12px;
+    color: #ef4444;
+    font-weight: 600;
+    margin-top: 4px;
+}
+
+/* 勤務時間表示 */
+.work-duration {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 20px;
+    background: rgba(67, 233, 123, 0.05);
+    border: 2px solid #43e97b;
+    border-radius: 8px;
+    margin-top: 16px;
+}
+
+.duration-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1a1a2e;
+}
+
+.duration-value {
+    font-size: 18px;
+    font-weight: 700;
+    color: #43e97b;
+}
+
+/* クイック時間設定 */
+.quick-time-section {
+    margin-bottom: 32px;
+    padding: 20px;
+    background: rgba(79, 172, 254, 0.05);
+    border: 2px solid rgba(79, 172, 254, 0.2);
+    border-radius: 8px;
+}
+
+.quick-buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 12px;
+}
+
+.quick-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 12px 16px;
+    background: #fff;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #1a1a2e;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.quick-btn:hover {
+    background: #f8fafc;
+    border-color: #4facfe;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(79, 172, 254, 0.2);
+}
+
+.quick-hours {
+    font-size: 11px;
+    color: #64748b;
+}
+
+/* 変更プレビュー */
+.change-preview {
+    padding: 20px;
+    background: rgba(79, 172, 254, 0.05);
+    border: 2px solid rgba(79, 172, 254, 0.2);
+    border-radius: 8px;
+    margin-bottom: 32px;
+}
+
+.preview-title {
+    font-size: 11px;
+    font-weight: 700;
+    color: #64748b;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.preview-content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.preview-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.preview-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #64748b;
+    min-width: 60px;
+}
+
+.preview-old {
+    font-size: 14px;
+    color: #64748b;
+    text-decoration: line-through;
+}
+
+.preview-new {
+    font-size: 14px;
+    font-weight: 700;
+    color: #4facfe;
+}
+
+.preview-arrow {
+    font-size: 18px;
+    color: #4facfe;
+    text-align: center;
+}
+
+/* アクションボタン */
+.form-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    padding-top: 24px;
+    border-top: 2px solid #e2e8f0;
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 32px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+
+.btn-cancel {
+    background: #f5f7fa;
+    color: #64748b;
+    border: 2px solid #e2e8f0;
+}
+
+.btn-cancel:hover {
+    background: #e2e8f0;
+}
+
+.btn-submit {
+    background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+    color: #fff;
+}
+
+.btn-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(67, 233, 123, 0.3);
+}
+
+.btn-icon {
+    font-size: 16px;
+}
+
+/* 通知 */
+.notification {
+    position: fixed;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 16px 24px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    font-weight: 600;
+    z-index: 1000;
+    transition: top 0.3s ease;
+    min-width: 300px;
+    text-align: center;
+}
+
+.notification.show {
+    top: 20px;
+}
+
+.notification.success {
+    border-left: 4px solid #43e97b;
+    color: #059669;
+}
+
+.notification.info {
+    border-left: 4px solid #4facfe;
+    color: #0284c7;
+}
+
+.notification.error {
+    border-left: 4px solid #ef4444;
+    color: #dc2626;
+}
+
+.notification.warning {
+    border-left: 4px solid #fbbf24;
+    color: #92400e;
+}
+
+/* レスポンシブ */
+@media (max-width: 768px) {
+    .page-header {
+        padding: 20px;
+    }
+    
+    .header-content {
+        flex-direction: column;
+        gap: 12px;
+        align-items: flex-start;
+    }
+    
+    .main-content {
+        padding: 20px;
+    }
+    
+    .card-header {
+        padding: 24px;
+    }
+    
+    .card-title {
+        font-size: 24px;
+    }
+    
+    .employee-info {
+        padding: 20px;
+    }
+    
+    .edit-form {
+        padding: 24px;
+    }
+    
+    .time-inputs {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    
+    .time-separator {
+        margin-top: 0;
+        transform: rotate(90deg);
+    }
+    
+    .quick-buttons {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-actions {
+        flex-direction: column-reverse;
+    }
+    
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .card-title {
+        font-size: 20px;
+    }
+    
+    .employee-name {
+        font-size: 16px;
+    }
+    
+    .date-value {
+        font-size: 16px;
+    }
+    
+    .time-input {
+        font-size: 14px;
+        padding: 10px 12px;
+    }
+}
+
+/* アニメーション */
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.edit-card {
+    animation: slideInUp 0.4s ease;
+}
+
+.form-section {
+    animation: slideInUp 0.5s ease;
+    animation-fill-mode: both;
+}
+
+.form-section:nth-child(1) { animation-delay: 0.1s; }
+.form-section:nth-child(2) { animation-delay: 0.2s; }
+.form-section:nth-child(3) { animation-delay: 0.3s; }
+
+/* スクロールバー */
+.main-content::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+.main-content::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.main-content::-webkit-scrollbar-thumb {
+    background: rgba(79, 172, 254, 0.3);
+    border-radius: 3px;
+}
+
+.main-content::-webkit-scrollbar-thumb:hover {
+    background: rgba(79, 172, 254, 0.5);
+}
+
+/* アクセシビリティ */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* プリント用 */
+@media print {
+    .page-header,
+    .quick-time-section,
+    .form-actions {
+        display: none;
+    }
+    
+    .edit-card {
+        box-shadow: none;
+    }
+}

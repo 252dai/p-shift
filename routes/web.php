@@ -87,11 +87,18 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/admin/users/{id}', [AdminUserController::class, 'destroy'])->name('admin.users.destroy');
 });
 
+// 管理者：一括確定処理 ※修正：middleware追加
+Route::middleware(['auth'])->group(function () {
+    Route::post('/admin/calendar/bulk-fix', [AdminController::class, 'bulkFix'])->name('admin.calendar.bulk-fix');
+});
+
 // 一般ユーザー：カレンダー形式でのシフト提出（新方式）※必要
 Route::middleware(['auth'])->group(function () {
     Route::get('/user/calendar-shift', [CalendarShiftController::class, 'create'])->name('calendar.shift.create');
     Route::post('/user/calendar-shift', [CalendarShiftController::class, 'store'])->name('calendar.shift.store');
 });
+
+
 
 // 管理者：カレンダーシフトを一覧表示 ※必要
 Route::middleware(['auth'])->group(function () {

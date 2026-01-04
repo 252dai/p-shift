@@ -1,323 +1,1078 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
+/* リセット */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 body {
-    font-family: 'Noto Sans JP', sans-serif;
-    background: linear-gradient(to right, #f0f4f8, #d9e2ec);
-    color: #333;
-    margin: 0;
-    padding: 1rem;
-    font-size: 14px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: #f5f7fa;
+    color: #2c3e50;
+    display: flex;
     min-height: 100vh;
+}
+
+/* サイドバー */
+.sidebar {
+    width: 280px;
+    background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+    color: #fff;
     display: flex;
     flex-direction: column;
+    position: fixed;
+    height: 100vh;
+    overflow-y: auto;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    transition: transform 0.3s ease;
 }
 
-/* ===== カレンダー上部のナビゲーション ===== */
-.calendar-nav {
+.sidebar-header {
+    padding: 24px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logo {
     display: flex;
-    justify-content: center;
     align-items: center;
-    gap: 1.2rem;
-    margin: 1rem 0 0.5rem;
+    gap: 12px;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 12px;
 }
 
-.calendar-nav a {
-    color: #3498db;
-    text-decoration: none;
+.logo-icon {
+    font-size: 28px;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.logo-text {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.user-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    background: rgba(79, 172, 254, 0.2);
+    border: 1px solid rgba(79, 172, 254, 0.4);
+    border-radius: 12px;
+    font-size: 12px;
     font-weight: 600;
-    font-size: 0.95rem;
-    padding: 0.4rem 0.8rem;
+    color: #4facfe;
+}
+
+/* セクションタイトル */
+.section-title {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 12px;
+}
+
+/* 提出状況サマリー */
+.summary-info {
+    padding: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.summary-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.summary-label {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.summary-value {
+    font-size: 24px;
+    font-weight: 700;
+    color: #4facfe;
+    animation: countUp 0.5s ease;
+}
+
+@keyframes countUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.summary-value.text-gray {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.summary-progress {
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.progress-bar {
+    flex: 1;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+    border-radius: 4px;
+    transition: width 0.5s ease;
+}
+
+.progress-text {
+    font-size: 12px;
+    font-weight: 600;
+    color: #4facfe;
+    min-width: 40px;
+    text-align: right;
+}
+
+/* 選択情報 */
+.selection-info {
+    padding: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.selection-card {
+    background: rgba(67, 233, 123, 0.1);
+    border: 1px solid rgba(67, 233, 123, 0.3);
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.selection-count {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+}
+
+.selection-number {
+    font-size: 32px;
+    font-weight: 700;
+    color: #43e97b;
+}
+
+.selection-label {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.clear-selection-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 8px 12px;
+    background: rgba(239, 68, 68, 0.2);
+    border: 1px solid rgba(239, 68, 68, 0.4);
     border-radius: 6px;
-    background-color: #fff;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    color: #ef4444;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
     transition: all 0.2s ease;
 }
 
-.calendar-nav a:hover {
-    background-color: #ecf6fc;
-    transform: translateY(-1px);
+.clear-selection-btn:hover:not(:disabled) {
+    background: rgba(239, 68, 68, 0.3);
 }
 
-.calendar-nav span {
+.clear-selection-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* 検索セクション */
+.search-section {
+    padding: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.search-box:focus-within {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(79, 172, 254, 0.5);
+}
+
+.search-icon {
+    font-size: 16px;
+}
+
+.search-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 14px;
+    outline: none;
+}
+
+.search-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* フィルターセクション */
+.filter-section {
+    padding: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.filter-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    margin-bottom: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.filter-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    transform: translateX(4px);
+}
+
+.filter-btn.active {
+    background: rgba(79, 172, 254, 0.2);
+    border-color: rgba(79, 172, 254, 0.5);
+    color: #fff;
+}
+
+/* クイック操作 */
+.quick-actions {
+    padding: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.quick-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background: rgba(67, 233, 123, 0.2);
+    border: 1px solid rgba(67, 233, 123, 0.4);
+    border-radius: 8px;
+    color: #43e97b;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.quick-btn:hover {
+    background: rgba(67, 233, 123, 0.3);
+    transform: translateX(4px);
+}
+
+/* サイドバーフッター */
+.sidebar-footer {
+    margin-top: auto;
+    padding: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.back-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.back-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateX(-4px);
+}
+
+/* メインコンテンツ */
+.main-content {
+    margin-left: 280px;
+    flex: 1;
+    padding: 40px;
+    padding-bottom: 100px;
+    min-height: 100vh;
+}
+
+.content-header {
+    margin-bottom: 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-left {
+    flex: 1;
+}
+
+.page-title {
+    font-size: 32px;
     font-weight: 700;
-    color: #2c3e50;
+    color: #1a1a2e;
+    margin-bottom: 8px;
 }
 
-/* ===== 見出し ===== */
-h2 {
-    text-align: center;
-    font-size: 1.4rem;
-    color: #2c3e50;
-    margin: 0.8rem 0 1rem;
+.page-subtitle {
+    font-size: 16px;
+    color: #64748b;
 }
 
-/* ===== カレンダー表 ===== */
-table {
+/* 通知 */
+.notification {
+    position: fixed;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 16px 24px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    font-weight: 600;
+    z-index: 1000;
+    transition: top 0.3s ease;
+}
+
+.notification.show {
+    top: 20px;
+}
+
+.notification.success {
+    border-left: 4px solid #43e97b;
+    color: #059669;
+}
+
+.notification.info {
+    border-left: 4px solid #4facfe;
+    color: #0284c7;
+}
+
+.notification.error {
+    border-left: 4px solid #ef4444;
+    color: #dc2626;
+}
+
+/* カレンダーナビゲーション */
+.calendar-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: #fff;
+    border-radius: 12px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.nav-btn {
+    padding: 10px 20px;
+    background: #f5f7fa;
+    color: #2c3e50;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.nav-btn:hover {
+    background: #e2e8f0;
+    transform: translateY(-2px);
+}
+
+.current-month {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1a1a2e;
+}
+
+/* カレンダー */
+.calendar-wrapper {
+    background: #fff;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    overflow-x: auto;
+}
+
+.calendar {
+    width: 100%;
     border-collapse: collapse;
-    width: 95%;
-    max-width: 900px;
-    margin: 0 auto;
-    background-color: #fff;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    min-width: 900px;
 }
 
-th, td {
-    border: 1px solid #e0e6ed;
-    width: 14.28%;
+.day-header {
+    padding: 16px 8px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 14px;
+    color: #1a1a2e;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.day-header.sunday {
+    color: #ef4444;
+}
+
+.day-header.saturday {
+    color: #3b82f6;
+}
+
+.calendar td {
+    padding: 12px;
     vertical-align: top;
-    height: 100px;
-    padding: 6px;
-    text-align: left;
+    min-height: 120px;
+    border: 1px solid #e2e8f0;
+    background: #fff;
+    transition: all 0.2s ease;
+}
+
+.calendar td:hover {
+    background: #f8fafc;
+}
+
+.calendar td.sunday {
+    background: #fef2f2;
+}
+
+.calendar td.saturday {
+    background: #eff6ff;
+}
+
+.calendar td.has-shifts {
+    background: rgba(79, 172, 254, 0.05);
+}
+
+.calendar td.sunday.has-shifts {
+    background: rgba(239, 68, 68, 0.05);
+}
+
+.calendar td.saturday.has-shifts {
+    background: rgba(59, 130, 246, 0.05);
+}
+
+/* 日付セル */
+.day-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-height: 100px;
+}
+
+.day-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.day-number {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1a1a2e;
+}
+
+.sunday .day-number {
+    color: #ef4444;
+}
+
+.saturday .day-number {
+    color: #3b82f6;
+}
+
+.day-actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.select-day-btn {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(79, 172, 254, 0.1);
+    border: 1px solid rgba(79, 172, 254, 0.3);
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.select-day-btn:hover {
+    background: rgba(79, 172, 254, 0.2);
+}
+
+.select-day-btn.active {
+    background: rgba(67, 233, 123, 0.2);
+    border-color: rgba(67, 233, 123, 0.5);
+}
+
+.shift-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    color: #fff;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+/* 希望なしテキスト */
+.no-shift-text {
+    font-size: 12px;
+    color: #94a3b8;
+    text-align: center;
+    display: block;
+    padding: 4px;
+}
+
+/* シフトコンテナ */
+.shift-container {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.shift-entry {
+    animation: slideIn 0.3s ease;
+}
+
+.shift-entry.hidden-shift {
+    display: none;
+}
+
+.shift-entry.visible-shift {
+    display: block;
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* シフトミニカード */
+.shift-mini-card {
     position: relative;
 }
 
-th {
-    background-color: #ecf6fc;
-    color: #2c3e50;
-    text-align: center;
-    padding: 0.6rem;
-    font-weight: 700;
-}
-
-/* 日付の数字部分 */
-.date {
-    font-weight: 700;
-    font-size: 0.9rem;
-    color: #3498db;
-    margin-bottom: 4px;
-}
-
-/* ===== 「シフトを見る」ボタン（折りたたみトグル） ===== */
-.toggle-btn {
-    display: block;
-    width: 100%;
-    text-align: center;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: #fff;
-    border: none;
+.shift-checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 8px 10px;
+    background: #fff;
+    border: 2px solid #e2e8f0;
     border-radius: 6px;
-    padding: 6px 8px;
-    font-size: 0.8rem;
-    font-weight: 600;
     cursor: pointer;
-    margin-top: 4px;
-    box-shadow: 0 2px 4px rgba(102, 126, 234, 0.3);
     transition: all 0.2s ease;
 }
 
-.toggle-btn:hover {
-    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
-    transform: translateY(-1px);
-    box-shadow: 0 3px 6px rgba(102, 126, 234, 0.4);
+.shift-checkbox-label:hover {
+    border-color: #4facfe;
+    background: #f8fafc;
 }
 
-.toggle-btn:active {
-    transform: translateY(0);
+.shift-checkbox {
+    width: 18px;
+    height: 18px;
+    margin-top: 2px;
+    cursor: pointer;
+    accent-color: #43e97b;
 }
 
-/* ===== シフト表示エリア（折りたたみ可能） ===== */
-.shift-container {
-    margin-top: 6px;
-    max-height: 200px;
-    overflow-y: auto;
-    background-color: #f8fbff;
-    border-radius: 6px;
-    padding: 6px;
-    border: 1px solid #dbe9f6;
-    box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+.shift-checkbox:checked + .shift-info-wrapper {
+    opacity: 0.8;
 }
 
-/* スクロールバーのカスタマイズ */
-.shift-container::-webkit-scrollbar {
-    width: 6px;
-}
-
-.shift-container::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 10px;
-}
-
-.shift-container::-webkit-scrollbar-thumb {
-    background: #3498db;
-    border-radius: 10px;
-}
-
-.shift-container::-webkit-scrollbar-thumb:hover {
-    background: #2980b9;
-}
-
-/* シフト個別のエントリー */
-.shift-entry {
-    background-color: #fff;
-    border: 1px solid #e8f2fc;
-    border-radius: 6px;
-    padding: 6px 8px;
-    margin: 4px 0;
-    font-size: 0.85rem;
-    color: #333;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+.shift-info-wrapper {
+    flex: 1;
     display: flex;
     flex-direction: column;
     gap: 4px;
 }
 
-/* シフトエントリーのテキスト部分 */
-.shift-entry > div {
-    line-height: 1.4;
-}
-
-/* 時間表示 */
-.shift-time {
-    color: #2c3e50;
+.mini-name {
+    font-size: 13px;
     font-weight: 600;
-    white-space: nowrap;
+    color: #1a1a2e;
 }
 
-/* 「確定」ボタン */
-.confirm-button {
-    align-self: flex-start;
-    background-color: #27ae60;
+.mini-time {
+    font-size: 11px;
+    color: #64748b;
+}
+
+/* もっと見るボタン */
+.show-more-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 6px 10px;
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
     color: #fff;
     border: none;
-    padding: 4px 10px;
-    font-size: 0.75rem;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: 600;
-    transition: all 0.2s ease;
-    box-shadow: 0 1px 3px rgba(39, 174, 96, 0.3);
-}
-
-.confirm-button:hover {
-    background-color: #229954;
-    transform: translateY(-1px);
-    box-shadow: 0 2px 4px rgba(39, 174, 96, 0.4);
-}
-
-.confirm-button:active {
-    transform: translateY(0);
-}
-
-/* 「希望なし」表示 */
-td > span {
-    display: block;
-    margin-top: 6px;
-    font-size: 0.8rem;
-    color: #999;
-    text-align: center;
-    font-style: italic;
-}
-
-/* 戻るリンク */
-p {
-    text-align: center;
-    margin-top: 1.5rem;
-}
-
-p a {
-    color: #3498db;
-    text-decoration: none;
-    font-weight: 600;
-    display: inline-block;
-    background-color: #fff;
-    padding: 0.5rem 1rem;
     border-radius: 6px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
     transition: all 0.2s ease;
 }
 
-p a:hover {
-    background-color: #ecf6fc;
-    transform: translateY(-1px);
-    box-shadow: 0 3px 6px rgba(0,0,0,0.12);
+.show-more-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(79, 172, 254, 0.3);
 }
 
-/* ===== スマホ対応 ===== */
-@media screen and (max-width: 768px) {
-    body {
-        padding: 0.5rem;
+.show-more-btn.expanded {
+    background: linear-gradient(135deg, #64748b 0%, #475569 100%);
+}
+
+.more-icon {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.more-text {
+    font-size: 11px;
+}
+
+/* 一括操作バー */
+.bulk-action-bar {
+    position: fixed;
+    bottom: -100px;
+    left: 280px;
+    right: 0;
+    background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.2);
+    z-index: 90;
+    transition: bottom 0.3s ease;
+}
+
+.bulk-action-bar.show {
+    bottom: 0;
+}
+
+.bulk-info {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    color: #fff;
+}
+
+.bulk-count {
+    font-size: 32px;
+    font-weight: 700;
+    color: #43e97b;
+}
+
+.bulk-label {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.bulk-actions {
+    display: flex;
+    gap: 12px;
+}
+
+.bulk-btn {
+    padding: 12px 32px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.bulk-btn-cancel {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.bulk-btn-cancel:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.bulk-btn-confirm {
+    background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+    color: #fff;
+}
+
+.bulk-btn-confirm:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(67, 233, 123, 0.4);
+}
+
+/* モーダル */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 2000;
+    animation: fadeIn 0.2s ease;
+}
+
+.modal.show {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-content {
+    background: #fff;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.modal-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1a1a2e;
+}
+
+.modal-close {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f5f7fa;
+    border: none;
+    border-radius: 50%;
+    font-size: 24px;
+    color: #64748b;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.modal-close:hover {
+    background: #e2e8f0;
+    color: #1a1a2e;
+}
+
+.modal-body {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.modal-info-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.modal-label {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #64748b;
+}
+
+.modal-value {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1a1a2e;
+}
+
+.modal-time {
+    font-size: 18px;
+    color: #4facfe;
+}
+
+.modal-footer {
+    padding: 20px 24px;
+    border-top: 1px solid #e2e8f0;
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+}
+
+.modal-btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.modal-btn-cancel {
+    background: #f5f7fa;
+    color: #64748b;
+}
+
+.modal-btn-cancel:hover {
+    background: #e2e8f0;
+}
+
+/* レスポンシブ */
+@media (max-width: 1024px) {
+    .sidebar {
+        width: 240px;
+    }
+    
+    .main-content {
+        margin-left: 240px;
+        padding: 24px;
+    }
+    
+    .bulk-action-bar {
+        left: 240px;
+    }
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 280px;
+        transform: translateX(-100%);
+        position: fixed;
+    }
+    
+    .sidebar.mobile-open {
+        transform: translateX(0);
+    }
+    
+    .main-content {
+        margin-left: 0;
+        padding: 20px;
+    }
+    
+    .bulk-action-bar {
+        left: 0;
+        padding: 16px 20px;
+    }
+    
+    .bulk-info {
+        flex-direction: column;
+        gap: 4px;
+    }
+    
+    .bulk-count {
+        font-size: 24px;
+    }
+    
+    .bulk-label {
         font-size: 13px;
     }
-
-    .calendar-nav {
-        gap: 0.8rem;
-        margin: 0.5rem 0;
-    }
-
-    .calendar-nav a {
-        font-size: 0.85rem;
-        padding: 0.3rem 0.6rem;
-    }
-
-    h2 {
-        font-size: 1.2rem;
-        margin: 0.5rem 0 0.8rem;
-    }
-
-    table {
+    
+    .bulk-actions {
+        flex-direction: column;
         width: 100%;
     }
-
-    th, td {
-        font-size: 0.75rem;
-        padding: 4px;
-        height: 90px;
+    
+    .bulk-btn {
+        width: 100%;
+        justify-content: center;
     }
-
-    .date {
-        font-size: 0.85rem;
+    
+    .page-title {
+        font-size: 24px;
     }
-
-    .toggle-btn {
-        font-size: 0.7rem;
-        padding: 5px 6px;
+    
+    .calendar-nav {
+        flex-direction: column;
+        gap: 12px;
     }
-
-    .shift-container {
-        max-height: 150px;
-        padding: 4px;
+    
+    .current-month {
+        font-size: 20px;
     }
-
-    .shift-entry {
-        font-size: 0.75rem;
-        padding: 4px 6px;
+    
+    .calendar-wrapper {
+        padding: 12px;
     }
-
-    .confirm-button {
-        font-size: 0.7rem;
-        padding: 3px 8px;
+    
+    .calendar {
+        min-width: 600px;
     }
-
-    p a {
-        font-size: 0.85rem;
-        padding: 0.4rem 0.8rem;
+    
+    .modal-content {
+        width: 95%;
+        margin: 20px;
     }
 }
 
-@media screen and (max-width: 480px) {
-    th, td {
-        height: 80px;
-        padding: 2px;
+@media (max-width: 480px) {
+    .shift-checkbox-label {
+        padding: 6px 8px;
     }
-
-    .date {
-        font-size: 0.8rem;
-        margin-bottom: 2px;
+    
+    .mini-name {
+        font-size: 12px;
     }
-
-    .toggle-btn {
-        font-size: 0.65rem;
-        padding: 4px;
+    
+    .mini-time {
+        font-size: 10px;
     }
+}
 
-    .shift-container {
-        max-height: 120px;
+/* スクロールバー */
+.sidebar::-webkit-scrollbar,
+.calendar-wrapper::-webkit-scrollbar,
+.modal-content::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track,
+.calendar-wrapper::-webkit-scrollbar-track,
+.modal-content::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.sidebar::-webkit-scrollbar-thumb,
+.calendar-wrapper::-webkit-scrollbar-thumb,
+.modal-content::-webkit-scrollbar-thumb {
+    background: rgba(79, 172, 254, 0.3);
+    border-radius: 3px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover,
+.calendar-wrapper::-webkit-scrollbar-thumb:hover,
+.modal-content::-webkit-scrollbar-thumb:hover {
+    background: rgba(79, 172, 254, 0.5);
+}
+
+/* アクセシビリティ */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
     }
+}
 
-    .shift-entry {
-        font-size: 0.7rem;
-        padding: 3px 5px;
+/* プリント用 */
+@media print {
+    .sidebar,
+    .bulk-action-bar,
+    .calendar-nav,
+    .show-more-btn,
+    .modal,
+    .shift-checkbox,
+    .select-day-btn {
+        display: none;
+    }
+    
+    .main-content {
+        margin-left: 0;
+        padding: 20px;
+    }
+    
+    .calendar td {
+        page-break-inside: avoid;
+    }
+    
+    .shift-entry.hidden-shift {
+        display: block !important;
     }
 }
